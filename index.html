@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Clingy Footer</title>
+<link rel="stylesheet" href="css/inuit/inuit.css" />
+<style>
+
+/* I use classes for CSS and IDs for JS, jQuery, Watir etc. Works for me!*/
+
+
+/* Some basic styles just to make the page readble */
+
+html{ font-family: "Cambria", Georgia, "Times New Roman", Times, serif; }
+
+.page {
+	max-width: 700px;
+	margin: 0 auto;`
+}
+
+.header, .main, .footer {
+	padding: 1em;
+	border: 2px solid #999999;
+}
+
+.footer {
+	border-color: #F00F00;
+}
+
+</style>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/clingy-footer.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(document).clingyFooter();
+	});
+</script>
+</head>
+
+<body>
+	
+	<div class="page" id="page">
+	
+		<div class="header" id="header">
+		
+			<h1>Clingy Footer Demo</h1>
+		
+		</div>
+		
+		<div class="main" id="page-body">
+			
+			<p>This is a simple demo page for the Clingy Footer jQuery plugin.</p>
+			
+			<h2>Play with it</h2>
+			
+			<p>Go ahead, resize your browser!</p>
+			
+			<h2>Read about it</h2>
+			
+			<p><a href="/clingy-footer/">Head here to read the write up</a></p>
+		
+		</div>
+		
+		<div class="footer" id="footer">
+			
+			<h3>A typical footer containing my latest tweet</h3>
+			
+			<p>Blah, blah blah, 140 characters of complaining and/or bigotry. Life is terrible. You're all doing everything wrong and I am utterly perfect.</p>
+			
+			<p><a href="https://twitter.com/#!/SamuelTurner_">Follow me on twitter!</a></p>
+			
+		</div>
+	
+	</div>
+
+</body>
+</html>
