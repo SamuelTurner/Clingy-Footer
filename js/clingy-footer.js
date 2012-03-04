@@ -26,40 +26,58 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 */
+
 (function( $ ) {
 	
 	$.fn.clingyFooter = function() {
 		
 		// Declare the variables
 		
-		var $footerHeight = null;
-	
-		// Set some CSS attributes needed for this to work. Set them here so that if JS is disabled, the footer just sits at the bottom of the page.
-		$("html").css({ 'height' : '100%' });
-		$("body").css({ 'height' : '100%' });
+		var $footer = $("#footer");
+		var $page = $("#page");
+		var $html = $("html");
+		var $body = $("body");
+		var $pageBody = $("#page-body");
 		
-		$("#page").css({
+		var $footerPadding = null;
+		
+		
+		// Set some CSS attributes needed for this to work. Set them here so that if JS is disabled, the footer just sits at the bottom of the page.
+		
+		$html.css({
+			'height' : '100%'
+		});
+		
+		$body.css({
+			'height' : '100%'
+		});
+		
+		$page.css({
 			'min-height' : '100%',
 			'position' : 'relative'
 		});
 		
-		$("#footer").css({
+		$footer.css({
 			'position' : 'absolute',
 			'bottom' : '0',
 			'max-height' : '100%',
 			'overflow-y' : 'auto'
 		});
 		
+		
+		
 		// The function to take the height of the #footer, and make it the padding on the bottom of the #page-body.
 		function setPageContentPadding() {
-			$footerHeight = $("#footer").outerHeight();
-			$("#page-body").css("padding-bottom", $footerHeight);
+			$footerPadding = $footer.outerHeight();
+			$pageBody.css("padding-bottom", $footerPadding);
 		}
+		
+		
 		
 		// Call when the page is ready...
 		setPageContentPadding();
 		
-		// ... and whenever the browser is resized.
+		// ...and whenever the browser is resized.
 		$(window).resize(setPageContentPadding);
 		
 	}
