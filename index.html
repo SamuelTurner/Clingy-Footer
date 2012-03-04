@@ -32,7 +32,11 @@ html{ font-family: "Cambria", Georgia, "Times New Roman", Times, serif; }
 <script type="text/javascript" src="js/clingy-footer.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$(document).clingyFooter();
+		$(document).clingyFooter({
+			pageSelector : '#page',  
+			pageContentSelector : '#page-body',  
+			footerSelector: "#footer"
+		});
 	});
 </script>
 </head>

@@ -29,17 +29,24 @@ limitations under the License.
 
 (function( $ ) {
 	
-	$.fn.clingyFooter = function() {
+	$.fn.clingyFooter = function( options ) {
 		
 		// Declare the variables
 		
-		var $footer = $("#footer");
-		var $page = $("#page");
-		var $html = $("html");
-		var $body = $("body");
-		var $pageBody = $("#page-body");
+		var defaults = {
+			pageSelector : '#page',  
+			pageContentSelector : '#page-body',  
+			footerSelector: "#footer" 
+		},
 		
-		var $footerPadding = null;
+		settings = $.extend({}, defaults, options);
+		
+		var $page = $( settings.pageSelector ),
+		$pageContent = $( settings.pageContentSelector ),
+		$footer = $( settings.footerSelector ),
+		$html = $("html"),
+		$body = $("body"),
+		$footerPadding = null;
 		
 		
 		// Set some CSS attributes needed for this to work. Set them here so that if JS is disabled, the footer just sits at the bottom of the page.
@@ -69,7 +76,7 @@ limitations under the License.
 		// The function to take the height of the #footer, and make it the padding on the bottom of the #page-body.
 		function setPageContentPadding() {
 			$footerPadding = $footer.outerHeight();
-			$pageBody.css("padding-bottom", $footerPadding);
+			$pageContent.css("padding-bottom", $footerPadding);
 		}
 		
 		
