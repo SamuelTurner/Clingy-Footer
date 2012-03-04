@@ -6,7 +6,7 @@ Author:             Samuel Turner
 Twitter:            @SamuelTurner_
 Author URL:         samuel-turner.co.uk
 Project URL:        samuel-turner.co.uk/clingy-footer/
-Version:            1.0.0
+Version:            1.1.0
 Date:               29/02/2012
 
 --- LICENCE ---
