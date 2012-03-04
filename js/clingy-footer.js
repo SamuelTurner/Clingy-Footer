@@ -52,7 +52,7 @@ limitations under the License.
 		
 		// The function to take the height of the #footer, and make it the padding on the bottom of the #page-body.
 		function setPageContentPadding() {
-			$footerHeight = $("#footer").height();
+			$footerHeight = $("#footer").outerHeight();
 			$("#page-body").css("padding-bottom", $footerHeight);
 		}
 		
