@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    $MAIN
+\*------------------------------------*/
+/**
+ * Blanket styles that can't be abstracted
+ */
+body {
+	background-color: $background-color-1;
+}
+
+p{
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+}

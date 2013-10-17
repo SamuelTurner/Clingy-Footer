@@ -1,77 +1,77 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Clingy Footer</title>
-<link rel="stylesheet" href="css/inuit/inuit.css" />
-<style>
-
-/* I use classes for CSS and IDs for JS, jQuery, Watir etc. Works for me!*/
-
-
-/* Some basic styles just to make the page readble */
-
-html{ font-family: "Cambria", Georgia, "Times New Roman", Times, serif; }
-
-.page {
-	max-width: 700px;
-	margin: 0 auto;`
-}
-
-.header, .main, .footer {
-	padding: 1em;
-	border: 2px solid #999999;
-}
-
-.footer {
-	border-color: #F00F00;
-}
-
-</style>
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/clingy-footer.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(document).clingyFooter({
-			pageSelector : '#page',  
-			pageContentSelector : '#page-body',  
-			footerSelector: "#footer"
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	<title>Clingy Footer</title>
+	
+	<link rel="stylesheet" href="css/style.css" />
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	
+	<script type="text/javascript" src="js/clingy-footer-1.2.0.js"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$(document).clingyFooter();
 		});
-	});
-</script>
+	</script>
+
 </head>
 
 <body>
 	
 	<div class="page" id="page">
 	
-		<div class="header" id="header">
+		<div class="page-header">
 		
-			<h1>Clingy Footer Demo</h1>
-		
-		</div>
-		
-		<div class="main" id="page-body">
-			
-			<p>This is a simple demo page for the Clingy Footer jQuery plugin.</p>
-			
-			<h2>Play with it</h2>
-			
-			<p>Go ahead, resize your browser!</p>
-			
-			<h2>Read about it</h2>
-			
-			<p><a href="/clingy-footer/">Head here to read the write up</a></p>
+			<div class="page-header__logo">
+				
+				<span class="kilo">Clingy-Footer</span>
+				
+			</div>
 		
 		</div>
 		
-		<div class="footer" id="footer">
+		<div class="page-body" id="page-body">
 			
-			<h3>A typical footer containing my latest tweet</h3>
+			<div class="module">
+				
+				<p class="disclaimer delta">Clingy-Footer is for <strong>fluid height</strong> footers. If you can fix your footer's height, you should use one of the many CSS only solutions available. (<a href="http://mystrd.at/modern-clean-css-sticky-footer/">I recommend this one</a>).</p>
+				
+				<h2 class="delta">Basic Use</h2>
+				
+				<p>Have a look at the source of this page. All you have to do is call the function (if you use the default selectors):</p>
+
+<pre><code>$(document).ready(function(){
+	$(document).clingyFooter();
+});</code></pre>
+				
+				<h2 class="delta">Overriding Default Selectors</h2>
+				
+				<p>You can also easily pass in the selectors for the body of the page (pageContentSelector), the footer (footerSelector) and the wrapper around the two (pageSelector) to override the default IDs shown in this example:</p>
+				
+<pre><code>$(document).ready(function(){
+	$(document).clingyFooter({
+		pageSelector : '#page',
+		pageContentSelector : '#page-body',
+		footerSelector: "#page-footer"
+	});
+});</code></pre>
+				
+				<h2 class="delta">Supported Usage</h2>
+				
+				<p>Clingy-Footer has been tested as confirmed as working in jQuery v2.0.3 (and therefore should work in all browsers that jQuery supports) but should work on most older versions as it's pretty simple.</p>
+				
+				<p><a href="http://samuel-turner.co.uk/clingy-footer/">Head here to read the write up</a></p>
+				
+			</div>
+		
+		</div>
+		
+		<div class="page-footer" id="page-footer">
 			
-			<p>Blah, blah blah, 140 characters of complaining and/or bigotry. Life is terrible. You're all doing everything wrong and I am utterly perfect.</p>
-			
-			<p><a href="https://twitter.com/#!/SamuelTurner_">Follow me on twitter!</a></p>
+			<p>&copy; <a href="http://samuel-turner.co.uk">Samuel-Turner.co.uk</a> - Footer stays down here!</p>
 			
 		</div>
 	

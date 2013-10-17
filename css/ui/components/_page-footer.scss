@@ -1,0 +1,20 @@
+/*------------------------------------*\
+    $PAGE FOOTER
+\*------------------------------------*/
+/**
+ * Footer for all pages
+ */
+
+.page-footer {
+	@extend .cf;
+	width: 100%;
+	background-color: $brand-color-1;
+	border-top: 10px solid $brand-color-2;
+	color: $font-color-2;
+	padding: $base-spacing-unit;
+	margin-top: $base-spacing-unit;
+	
+	a {
+		color: #fff;	
+	}
+}

@@ -2,12 +2,12 @@
 
 --- META ---
 
-Author:             Samuel Turner
-Twitter:            @SamuelTurner_
-Author URL:         samuel-turner.co.uk
-Project URL:        samuel-turner.co.uk/clingy-footer/
-Version:            1.1.0
-Date:               29/02/2012
+Author:			Samuel Turner
+Twitter:		@SamuelTurner_
+Author URL:		samuel-turner.co.uk
+Project URL:	samuel-turner.co.uk/clingy-footer/
+Version:		1.2.0
+Updated:		17/10/2013
 
 --- LICENCE ---
 
@@ -34,9 +34,9 @@ limitations under the License.
 		// Declare the variables
 		
 		var defaults = {
-			pageSelector : '#page',  
-			pageContentSelector : '#page-body',  
-			footerSelector: "#footer" 
+			pageSelector : '#page',
+			pageContentSelector : '#page-body',
+			footerSelector: "#page-footer"
 		},
 		
 		settings = $.extend({}, defaults, options);
@@ -75,7 +75,7 @@ limitations under the License.
 		
 		// The function to take the height of the #footer, and make it the padding on the bottom of the #page-body.
 		function setPageContentPadding() {
-			$footerPadding = $footer.outerHeight();
+			$footerPadding = $footer.outerHeight( true );
 			$pageContent.css("padding-bottom", $footerPadding);
 		}
 		
