@@ -1,19 +1,24 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	
 	<title>Clingy Footer</title>
 	
-	<link rel="stylesheet" href="css/style.css" />
+	<link rel="stylesheet" href="assets/css/style.css" />
 	
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/jquery/jquery-2.0.3.min.js"></script>
 	
-	<script type="text/javascript" src="js/clingy-footer-1.2.0.js"></script>
+	<script type="text/javascript" src="assets/js/clingy-footer/clingy-footer-1.2.0.js"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			$(document).clingyFooter();
+			$(document).clingyFooter({
+				pageSelector : '#page',
+				pageContentSelector : '#page-body',
+				footerSelector: "#page-footer-wrapper"
+			});
 		});
 	</script>
 
@@ -22,22 +27,28 @@
 <body>
 	
 	<div class="page" id="page">
-	
-		<div class="page-header">
 		
-			<div class="page-header__logo">
+		<div class="page-header-wrapper">
+			
+			<div class="page-header">
 				
-				<span class="kilo">Clingy-Footer</span>
+				<div class="page-header__top-bar">
+					
+					<div class="page-header__logo">Clingy-Footer</div>
+					
+					<span class="page-header__menu-icon no-js-hide"></span>
+					
+				</div><!-- Closing: page-header__top-bar -->
 				
-			</div>
-		
-		</div>
+			</div><!-- Closing: page-header -->
+			
+		</div><!-- Closing: page-header-wrapper -->
 		
 		<div class="page-body" id="page-body">
 			
 			<div class="module">
 				
-				<p class="disclaimer delta">Clingy-Footer is for <strong>fluid height</strong> footers. If you can fix your footer's height, you should use one of the many CSS only solutions available. (<a href="http://mystrd.at/modern-clean-css-sticky-footer/">I recommend this one</a>).</p>
+				<div class="info">Clingy-Footer is for <strong>fluid height</strong> footers. If you can fix your footer's height, you should use one of the many CSS only solutions available. (<a href="http://mystrd.at/modern-clean-css-sticky-footer/">I recommend this one</a>).</div>
 				
 				<h2 class="delta">Basic Use</h2>
 				
@@ -61,21 +72,25 @@
 				
 				<h2 class="delta">Supported Usage</h2>
 				
-				<p>Clingy-Footer has been tested as confirmed as working in jQuery v2.0.3 (and therefore should work in all browsers that jQuery supports) but should work on most older versions as it's pretty simple.</p>
+				<p>Clingy-Footer is supported on jQuery v2.0.3 (and therefore should work in all browsers that jQuery supports) but should work on most older versions as it's pretty simple. I do not currently, nor will I ever, look at this in IE8 or below. Life is too short!</p>
 				
 				<p><a href="http://samuel-turner.co.uk/clingy-footer/">Head here to read the write up</a></p>
 				
-			</div>
+			</div><!-- Closing: module -->
 		
-		</div>
+		</div><!-- Closing: page-body -->
 		
-		<div class="page-footer" id="page-footer">
+		<div class="page-footer-wrapper" id="page-footer-wrapper">
 			
-			<p>&copy; <a href="http://samuel-turner.co.uk">Samuel-Turner.co.uk</a> - Footer stays down here!</p>
+			<div class="page-footer">
+				
+				&copy; <a href="http://samuel-turner.co.uk">Samuel-Turner.co.uk</a>
+				
+			</div><!-- Closing: page-footer -->
 			
-		</div>
+		</div><!-- Closing: page-footer-wrapper -->
 	
-	</div>
+	</div><!-- Closing: page -->
 
 </body>
 </html>

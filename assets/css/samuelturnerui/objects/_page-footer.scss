@@ -1,20 +1,30 @@
+@if $use-page-footer == true {
+
 /*------------------------------------*\
     $PAGE FOOTER
 \*------------------------------------*/
-/**
+/*
  * Footer for all pages
  */
 
-.page-footer {
+.page-footer-wrapper {
 	@extend .cf;
-	width: 100%;
 	background-color: $brand-color-1;
 	border-top: 10px solid $brand-color-2;
 	color: $font-color-2;
+	width: 100%; /* Clingy footer requires a width */
+}
+
+.page-footer {
+	@extend .cf;
+	min-width: $min-page-width;
+	max-width: $max-page-width;
 	padding: $base-spacing-unit;
-	margin-top: $base-spacing-unit;
+	margin: 0 auto;
 	
 	a {
 		color: #fff;	
 	}
+}
+
 }

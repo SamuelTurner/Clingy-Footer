@@ -1,0 +1,35 @@
+@if $use-beautons == true{
+
+/*------------------------------------*\
+    $BEAUTONS OVERWRITE
+\*------------------------------------*/
+/**
+ * Some styles to overwrite the Beautons
+ */
+ 
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+/**
+ * Base button styles.
+ */
+.btn{
+}
+
+/**
+ * Positive actions; e.g. sign in, purchase, submit, etc.
+ */
+.btn--positive{
+    background-color: $brand-color-1;
+    color: #fff;
+}
+
+/**
+ * Negative actions; e.g. close account, delete photo, remove friend, etc.
+ */
+.btn--negative{
+    background-color: $brand-color-2;
+    color :#fff;
+}
+
+}

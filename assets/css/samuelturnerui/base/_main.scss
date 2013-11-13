@@ -1,15 +1,14 @@
 /*------------------------------------*\
-    $MAIN
+    MAIN
 \*------------------------------------*/
 /**
  * Blanket styles that can't be abstracted
  */
-body {
-	background-color: $background-color-1;
+html {
+	color: #333;
 }
 
-p{
-	&:last-of-type {
-		margin-bottom: 0;
-	}
+body {
+	background-color: $background-color-1;
+	margin: 0 auto;
 }

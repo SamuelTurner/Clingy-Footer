@@ -26,7 +26,7 @@
 $use-grids:         true;
 $use-flexbox:       false;
 $use-columns:       false;
-$use-nav:           false;
+$use-nav:           true;
 $use-options:       false;
 $use-pagination:    false;
 $use-breadcrumb:    false;
@@ -42,7 +42,7 @@ $use-flyout:        false;
 $use-arrows:        false;
 $use-sprite:        false;
 $use-icon-text:     false;
-$use-beautons:      false;
+$use-beautons:      true;
 $use-lozenges:      false;
 $use-rules:         false;
 $use-stats:         false;
@@ -58,7 +58,9 @@ $use-greybox:       false;
 /**
  * Place any variables that should override inuit.css’ defaults here.
  */
-$base-font-family: asapregular,Calibri,Arial,Helvetica,sans-serif;
+$base-font-family:	merriweather_sansregular, asapregular,Calibri,Arial,Helvetica,sans-serif;
+$responsive: 		true;
+$lap-start:         641px;
 
 
 
@@ -68,6 +70,19 @@ $base-font-family: asapregular,Calibri,Arial,Helvetica,sans-serif;
 /**
  * Place any of your own variables that sit on top of inuit.css here.
  */
+/* Objects & Abstractions */
+$use-modules: 		true;
+$use-page:			true;
+$use-page-header:	true;
+$use-page-body:		true;
+$use-page-footer:	true;
+$use-info:			true;
+$use-errors:		true;
+$use-nav:			true;
+
+/* Variables */
+$min-page-width:	480px;
+$max-page-width:	1200px;
 
 /* Brand fonts */
 $brand-font-1: pacificoregular,Calibri,Arial,Helvetica,sans-serif;

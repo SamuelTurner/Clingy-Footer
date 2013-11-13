@@ -44,6 +44,8 @@
 /**
  * Place any of your own variables that sit on top of inuit.css here.
  */
+/* Objects & Abstractions */
+/* Variables */
 /* Brand fonts */
 /* Brand colours */
 /* Font colours */
@@ -845,7 +847,8 @@ textarea:focus {
  * Extend the clearfix class with Sass to avoid the `.cf` class appearing over
  * and over in your markup.
  */
-.cf:after, .page-header:after, .page-footer:after {
+.cf:after, .nav:after, .page-header__nav:after, .form-row-wrapper:after,
+.form-row:after, .page-header:after, .page-header__top-bar:after, .page-footer-wrapper:after, .page-footer:after, .module:after {
   content: "";
   display: table;
   clear: both;
@@ -921,7 +924,7 @@ ul, ol, dd {
     $MAIN
 \*------------------------------------*/
 html {
-  font: 1em/1.5 asapregular, Calibri, Arial, Helvetica, sans-serif;
+  font: 1em/1.5 merriweather_sansregular, asapregular, Calibri, Arial, Helvetica, sans-serif;
   overflow-y: scroll;
   min-height: 100%;
 }
@@ -1764,6 +1767,343 @@ label,
   vertical-align: top;
 }
 
+/*------------------------------------*\
+    $NAV
+\*------------------------------------*/
+/**
+ * Nav abstraction as per: csswizardry.com/2011/09/the-nav-abstraction
+ * When used on an `ol` or `ul`, this class throws the list into horizontal mode
+ * e.g.:
+ *
+   <ul class=nav>
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Demo: jsfiddle.net/inuitcss/Vnph4
+ *
+ */
+.nav, .page-header__nav {
+  list-style: none;
+  margin-left: 0;
+}
+.nav > li, .page-header__nav > li,
+.nav > li > a,
+.page-header__nav > li > a {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+
+/**
+ * `.nav--stacked` extends `.nav` and throws the list into vertical mode, e.g.:
+ *
+   <ul class="nav  nav--stacked">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--stacked > li {
+  display: list-item;
+}
+.nav--stacked > li > a {
+  display: block;
+}
+
+/**
+ * `.nav--banner` extends `.nav` and centres the list, e.g.:
+ *
+   <ul class="nav  nav--banner">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--banner {
+  text-align: center;
+}
+
+/**
+ * Give nav links a big, blocky hit area. Extends `.nav`, e.g.:
+ *
+   <ul class="nav  nav--block">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ */
+.nav--block {
+  line-height: 1;
+  /**
+   * Remove whitespace caused by `inline-block`.
+   */
+  letter-spacing: -0.31em;
+  word-spacing: -0.43em;
+  white-space: nowrap;
+}
+.nav--block > li {
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+.nav--block > li > a {
+  padding: 12px;
+}
+
+/**
+ * Force a nav to occupy 100% of the available width of its parent. Extends
+ * `.nav`, e.g.:
+ *
+   <ul class="nav  nav--fit">
+       <li><a href=#>Home</a></li>
+       <li><a href=#>About</a></li>
+       <li><a href=#>Portfolio</a></li>
+       <li><a href=#>Contact</a></li>
+   </ul>
+ *
+ * Thanks to @pimpl for this idea!
+ */
+.nav--fit {
+  display: table;
+  width: 100%;
+}
+.nav--fit > li {
+  display: table-cell;
+}
+.nav--fit > li > a {
+  display: block;
+}
+
+/**
+ * Make a list of keywords. Extends `.nav`, e.g.:
+ *
+   `<ul class="nav  nav--keywords>`
+ *
+ */
+.nav--keywords > li:after {
+  content: "\002C" "\00A0";
+}
+.nav--keywords > li:last-child:after {
+  display: none;
+}
+
+/*------------------------------------*\
+    $BEAUTONS.CSS
+\*------------------------------------*/
+/**
+ * beautons is a beautifully simple button toolkit.
+ *
+ * LICENSE
+ * 
+ * Copyright 2013 Harry Roberts
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ */
+/*!*
+ * 
+ * @csswizardry -- csswizardry.com/beautons
+ * 
+ */
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+/**
+ * Base button styles.
+ *
+ * 1. Allow us to better style box model properties.
+ * 2. Line different sized buttons up a little nicer.
+ * 3. Stop buttons wrapping and looking broken.
+ * 4. Make buttons inherit font styles.
+ * 5. Force all elements using beautons to appear clickable.
+ * 6. Normalise box model styles.
+ * 7. If the buttonÔÇÖs text is 1em, and the button is (3 * font-size) tall, then
+ *    there is 1em of space above and below that text. We therefore apply 1em
+ *    of space to the left and right, as padding, to keep consistent spacing.
+ * 8. Basic cosmetics for default buttons. Change or override at will.
+ * 9. DonÔÇÖt allow buttons to have underlines; it kinda ruins the illusion.
+ */
+.btn {
+  display: inline-block;
+  /* [1] */
+  vertical-align: middle;
+  /* [2] */
+  white-space: nowrap;
+  /* [3] */
+  font-family: inherit;
+  /* [4] */
+  font-size: 100%;
+  /* [4] */
+  cursor: pointer;
+  /* [5] */
+  border: none;
+  /* [6] */
+  margin: 0;
+  /* [6] */
+  padding-top: 0;
+  /* [6] */
+  padding-bottom: 0;
+  /* [6] */
+  line-height: 3;
+  /* [7] */
+  padding-right: 1em;
+  /* [7] */
+  padding-left: 1em;
+  /* [7] */
+  border-radius: 4px;
+  /* [8] */
+}
+
+.btn, .btn:hover {
+  text-decoration: none;
+  /* [9] */
+}
+.btn:active, .btn:focus {
+  outline: none;
+}
+
+/*------------------------------------*\
+    $SIZES
+\*------------------------------------*/
+/**
+ * Button size modifiers.
+ *
+ * These all follow the same sizing rules as above; text is 1em, space around it
+ * remains uniform.
+ */
+.btn--small {
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  line-height: 2;
+}
+
+.btn--large {
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  line-height: 4;
+}
+
+.btn--huge {
+  padding-right: 2em;
+  padding-left: 2em;
+  line-height: 5;
+}
+
+/**
+ * These buttons will fill the entirety of their container.
+ *
+ * 1. Remove padding so that widths and paddings donÔÇÖt conflict.
+ */
+.btn--full {
+  width: 100%;
+  padding-right: 0;
+  /* [1] */
+  padding-left: 0;
+  /* [1] */
+  text-align: center;
+}
+
+/*------------------------------------*\
+    $FONT-SIZES
+\*------------------------------------*/
+/**
+ * Button font-size modifiers.
+ */
+.btn--alpha {
+  font-size: 3rem;
+}
+
+.btn--beta {
+  font-size: 2rem;
+}
+
+.btn--gamma {
+  font-size: 1rem;
+}
+
+/**
+ * Make the button inherit sizing from its parent.
+ */
+.btn--natural {
+  vertical-align: baseline;
+  font-size: inherit;
+  line-height: inherit;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+/*------------------------------------*\
+    $FUNCTIONS
+\*------------------------------------*/
+/**
+ * Button function modifiers.
+ */
+/**
+ * Positive actions; e.g. sign in, purchase, submit, etc.
+ */
+.btn--positive {
+  background-color: #4A993E;
+  color: #fff;
+}
+
+/**
+ * Negative actions; e.g. close account, delete photo, remove friend, etc.
+ */
+.btn--negative {
+  background-color: #b33630;
+  color: #fff;
+}
+
+/**
+ * Inactive, disabled buttons.
+ * 
+ * 1. Make the button look like normal text when hovered.
+ */
+.btn--inactive,
+.btn--inactive:hover,
+.btn--inactive:active,
+.btn--inactive:focus {
+  background-color: #ddd;
+  color: #777;
+  cursor: text;
+  /* [1] */
+}
+
+/*------------------------------------*\
+    $STYLES
+\*------------------------------------*/
+/**
+ * Button style modifiers.
+ *
+ * 1. Use an overly-large number to ensure completely rounded, pill-like ends.
+ */
+.btn--soft {
+  border-radius: 200px;
+  /* [1] */
+}
+
+.btn--hard {
+  border-radius: 0;
+}
+
 /**
  * Style trumps; helper and brand classes
  */
@@ -1915,7 +2255,7 @@ label,
  * Demo: jsfiddle.net/inuitcss/WS4Ge
  *
  */
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 640px) {
   /**
   * Whole
   */
@@ -2039,7 +2379,7 @@ label,
     width: 91.666%;
   }
 }
-@media only screen and (min-width: 481px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   /**
   * Whole
   */
@@ -2163,7 +2503,7 @@ label,
     width: 91.666%;
   }
 }
-@media only screen and (min-width: 481px) {
+@media only screen and (min-width: 641px) {
   /**
   * Whole
   */
@@ -2888,7 +3228,7 @@ label,
   width: 1px !important;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 640px) {
   .accessibility--palm,
   .visuallyhidden--palm {
     border: 0 !important;
@@ -2901,7 +3241,7 @@ label,
     width: 1px !important;
   }
 }
-@media only screen and (min-width: 481px) and (max-width: 1023px) {
+@media only screen and (min-width: 641px) and (max-width: 1023px) {
   .accessibility--lap,
   .visuallyhidden--lap {
     border: 0 !important;
@@ -2914,7 +3254,7 @@ label,
     width: 1px !important;
   }
 }
-@media only screen and (min-width: 481px) {
+@media only screen and (min-width: 641px) {
   .accessibility--lap-and-up,
   .visuallyhidden--lap-and-up {
     border: 0 !important;
@@ -2970,125 +3310,549 @@ label,
 /**
  * She’s all yours, cap’n... Begin importing your stuff here.
  */
-/* Base */
 /*------------------------------------*\
-    $MIXINS
+    SAMUEL TURNER UI
+\*------------------------------------*/
+/*!*
+ *
+ * samuel-turner.co.uk -- @SamuelTurner_
+ *
+ */
+/**
+ * My personal base UI that I use across my projects.
+ *
+ * If it's of any use to you, feel free to use it.
+ *
+ * LICENSE
+ *
+ * Copyright 2013 Samuel Turner
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+/* Generic */
+/*------------------------------------*\
+    DEFAULTS
 \*------------------------------------*/
 /**
- * Helpful mixins
+ * Some more default variables. Redefine these in your `_vars.scss` file (found
+ * in the inuit.css-web-template) to override them.
  */
+/* Brand fonts */
+/* Brand colours */
+/* Font colours */
+/* Background colours */
+/* Error colours */
+/* Info colours */
+/* Border radius */
+/* Border color */
+/* Quarter spacing unit */
 /*------------------------------------*\
-    $MAIN
+    SHARED
 \*------------------------------------*/
-/**
- * Blanket styles that can't be abstracted
- */
-body {
-  background-color: #e9e9e9;
-}
-
-p:last-of-type {
-  margin-bottom: 0;
+u {
+  text-decoration: underline;
 }
 
 /*------------------------------------*\
-    $FONTS
+    FONTS
 \*------------------------------------*/
 /**
  * Web fonts
  */
-/* ASAP REGULAR - Generated by Font Squirrel (http://www.fontsquirrel.com) on October 5, 2013 */
-@font-face {
-  font-family: 'asapregular';
-  src: url("../fonts/asap/asap-regular-webfont.eot");
-  src: url("../fonts/asap/asap-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/asap/asap-regular-webfont.woff") format("woff"), url("../fonts/asap/asap-regular-webfont.ttf") format("truetype"), url("../fonts/asap/asap-regular-webfont.svg#asapregular") format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
 /* Generated by Font Squirrel (http://www.fontsquirrel.com) on October 9, 2013 */
 @font-face {
   font-family: 'pacificoregular';
-  src: url("../fonts/pacifico/pacifico-webfont.eot");
-  src: url("../fonts/pacifico/pacifico-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/pacifico/pacifico-webfont.woff") format("woff"), url("../fonts/pacifico/pacifico-webfont.ttf") format("truetype"), url("../fonts/pacifico/pacifico-webfont.svg#pacificoregular") format("svg");
+  src: url("../fonts/samuelturnerui/pacifico/pacifico-webfont.eot");
+  src: url("../fonts/samuelturnerui/pacifico/pacifico-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/samuelturnerui/pacifico/pacifico-webfont.woff") format("woff"), url("../fonts/samuelturnerui/pacifico/pacifico-webfont.ttf") format("truetype"), url("../fonts/samuelturnerui/pacifico/pacifico-webfont.svg#pacificoregular") format("svg");
   font-weight: normal;
   font-style: normal;
 }
 
-/* Components */
+/* Generated by Font Squirrel (http://www.fontsquirrel.com) on October 31, 2013 */
+@font-face {
+  font-family: 'merriweather_sansbold';
+  src: url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-bold-webfont.eot");
+  src: url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-bold-webfont.woff") format("woff"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-bold-webfont.ttf") format("truetype"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-bold-webfont.svg#merriweather_sansbold") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Generated by Font Squirrel (http://www.fontsquirrel.com) on October 31, 2013 */
+@font-face {
+  font-family: 'merriweather_sansregular';
+  src: url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-regular-webfont.eot");
+  src: url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-regular-webfont.woff") format("woff"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-regular-webfont.ttf") format("truetype"), url("../fonts/samuelturnerui/merriweather-sans/merriweathersans-regular-webfont.svg#merriweather_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*------------------------------------*\
-    $PAGE
+    MIXINS
+\*------------------------------------*/
+/*
+ * Brand text shadow - adds the brand text shadow to any element
+ */
+/*
+ * Menu icon - mainly used on mobiles to expand navs
+ */
+/*------------------------------------*\
+    HELPER
+\*------------------------------------*/
+/* JS HIDE/SHOW */
+/* .no-js-hide hides an element when JS doesn't run,
+ * so gets replaced with .js-show when JS does run
+ */
+.no-js-hide {
+  display: none !important;
+}
+
+.js-show {
+  /* Nothing yet */
+}
+
+/* .no-js-show shows an element when JS doesn't run,
+ * so gets replaced with .js-hide when JS does run
+ */
+.no-js-show {
+  /* Nothing yet */
+}
+
+.js-hide {
+  display: none !important;
+}
+
+/* Base */
+/*------------------------------------*\
+    MAIN
+\*------------------------------------*/
+/**
+ * Blanket styles that can't be abstracted
+ */
+html {
+  color: #333;
+}
+
+body {
+  background-color: #e9e9e9;
+  margin: 0 auto;
+}
+
+/*------------------------------------*\
+    HEADINGS
+\*------------------------------------*/
+/*
+ *  Overrides for the headings
+ */
+h1, .alpha,
+h2, .beta,
+h3, .gamma,
+h4, .delta,
+h5, .epsilon,
+h6, .zeta {
+  font-family: "merriweather_sansbold", "Arial Black", sans-serif;
+}
+
+/*------------------------------------*\
+    FORMS
+\*------------------------------------*/
+/**
+ * Shared element positioning and spacing
+ */
+.form-row input,
+.form-row select,
+.form-row textarea,
+.form-row fieldset,
+.form-row label,
+.form-row .label,
+.form-row .btn {
+  display: block;
+  margin-bottom: 12px;
+}
+
+.form-row fieldset input,
+.form-row fieldset select,
+.form-row fieldset textarea,
+.form-row fieldset label,
+.form-row fieldset .label,
+.form-row fieldset .btn {
+  margin-bottom: 0;
+}
+
+/**
+ * Shared element styling
+ */
+input[type=text],
+input[type=password],
+input[type=email],
+select,
+textarea,
+fieldset {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #999999;
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+select,
+textarea {
+  padding: 5px;
+  width: 250px;
+}
+
+/**
+ * Form elements
+ */
+fieldset {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 12px;
+}
+
+/**
+ * Form Rows
+ */
+.form-row-wrapper,
+.form-row {
+  display: block;
+}
+
+.form-row-wrapper {
+  margin-bottom: 12px;
+}
+
+/**
+ * Inline Items (make any items with the class in a form-row appear in a line)
+ */
+.form-row .inline-item,
+.form-row .inline-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+.form-row .inline-label {
+  width: 125px;
+  text-align: right;
+  margin-right: 12px;
+}
+
+/**
+ * Mobile stuff
+ */
+@media only screen and (max-width: 640px) {
+  .form-row .inline-item,
+  .form-row .inline-label {
+    display: block;
+  }
+  .form-row .inline-label {
+    width: auto;
+    text-align: left;
+    margin-right: 0;
+  }
+}
+/* Objects */
+/*------------------------------------*\
+    ERRORS
+\*------------------------------------*/
+/* Base styles for errors which can be added to form-rows, paragraphs etc. Extended in _module.scss */
+.error {
+  position: relative;
+  padding: 12px 12px 0 12px;
+  padding-left: 60px;
+  margin-bottom: 12px;
+  background-color: #c85461;
+  color: white;
+}
+.error:before {
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  line-height: 1;
+  content: "!";
+  font-size: 36px;
+  font-weight: bold;
+  color: #b00b1e;
+}
+.error .error__message {
+  display: block;
+  padding: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+  background-color: #b00b1e;
+}
+
+/*------------------------------------*\
+    INFO
+\*------------------------------------*/
+/* Base styles for an block of information which can be added to form-rows, paragraphs etc. Extended in _module.scss */
+.info {
+  position: relative;
+  padding: 12px 12px 12px 60px;
+  margin-bottom: 12px;
+  background-color: #7c9ef8;
+  color: white;
+}
+.info:before {
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  line-height: 1;
+  content: "i";
+  font-size: 36px;
+  font-weight: bold;
+  color: #1e55ee;
+}
+.info .error__message {
+  display: block;
+  padding: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+  background-color: #1e55ee;
+}
+
+/*------------------------------------*\
+    NAV
+\*------------------------------------*/
+/*
+ * Blanket nav styles
+ */
+.nav a, .page-header__nav a {
+  text-decoration: none;
+  margin-right: 12px;
+}
+.nav a:hover, .page-header__nav a:hover {
+  text-decoration: underline;
+}
+.nav li:last-of-type a, .page-header__nav li:last-of-type a {
+  margin-right: 0;
+}
+
+/**
+ * Mobile stuff
+ */
+@media only screen and (max-width: 640px) {
+  .nav li, .page-header__nav li {
+    display: block;
+  }
+  .nav li a, .page-header__nav li a {
+    display: block;
+    text-align: center;
+  }
+}
+/*------------------------------------*\
+    $BEAUTONS OVERWRITE
+\*------------------------------------*/
+/**
+ * Some styles to overwrite the Beautons
+ */
+/*------------------------------------*\
+    $BASE
+\*------------------------------------*/
+/**
+ * Base button styles.
+ */
+/**
+ * Positive actions; e.g. sign in, purchase, submit, etc.
+ */
+.btn--positive {
+  background-color: #7d0714;
+  color: #fff;
+}
+
+/**
+ * Negative actions; e.g. close account, delete photo, remove friend, etc.
+ */
+.btn--negative {
+  background-color: #b00b1e;
+  color: #fff;
+}
+
+/*------------------------------------*\
+    PAGE
 \*------------------------------------*/
 /**
  * Header for the main page template
  */
 /*------------------------------------*\
-    $PAGE HEADER
+    PAGE HEADER
 \*------------------------------------*/
-/**
+/*
  * Header for the main page template
  */
-.page-header {
+.page-header-wrapper {
   background-color: #7d0714;
   border-bottom: 10px solid #b00b1e;
   color: white;
-  padding: 24px;
+}
+
+.page-header {
+  min-width: 480px;
+  max-width: 1200px;
+  padding: 24px 24px 0 24px;
+  margin: 0 auto;
+}
+
+.page-header__top-bar {
+  display: block;
+  float: left;
 }
 
 .page-header__logo {
-  float: left;
-  font-family: pacificoregular, Calibri, Arial, Helvetica, sans-serif;
   text-shadow: 1px 1px #000;
+  display: block;
+  float: left;
+  margin-bottom: 24px;
+  font-family: pacificoregular, Calibri, Arial, Helvetica, sans-serif;
+  font-size: 48px;
+  line-height: 1;
 }
 
-.page-header__toolbar {
+.page-header__nav {
+  color: #fff;
+  margin: 12px 0 12px 0;
   float: right;
 }
+.page-header__nav a {
+  color: #fff;
+}
 
+.page-header__menu-icon {
+  position: relative;
+  padding-left: 1em;
+  display: block;
+  height: 36px;
+  font-size: 36px;
+  float: right;
+  display: none;
+  margin: 6px;
+}
+.page-header__menu-icon:before {
+  content: "";
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  width: 1em;
+  height: 0.6em;
+  border-top: 0.375em double white;
+  border-bottom: 0.125em solid white;
+}
+.page-header__menu-icon:hover {
+  cursor: pointer;
+}
+
+/**
+ * Mobile stuff
+ */
+@media only screen and (max-width: 640px) {
+  .page-header {
+    padding: 12px 12px 0 12px;
+  }
+
+  .page-header__top-bar {
+    float: none;
+  }
+
+  .page-header__logo {
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+
+  .page-header__nav {
+    float: none;
+    margin-top: 6px;
+  }
+  .page-header__nav li {
+    background-color: #b00b1e;
+    padding: 6px;
+    margin-bottom: 6px;
+  }
+  .page-header__nav li:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .page-header__menu-icon {
+    display: block;
+  }
+}
 /*------------------------------------*\
-    $PAGE BODY
+    PAGE BODY
 \*------------------------------------*/
 /**
  * The main wrapper for the page body
  */
 .page-body {
-  padding: 24px;
+  padding: 24px 24px 0 24px;
+  min-width: 480px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /*------------------------------------*\
     $PAGE FOOTER
 \*------------------------------------*/
-/**
+/*
  * Footer for all pages
  */
-.page-footer {
-  width: 100%;
+.page-footer-wrapper {
   background-color: #7d0714;
   border-top: 10px solid #b00b1e;
   color: white;
+  width: 100%;
+  /* Clingy footer requires a width */
+}
+
+.page-footer {
+  min-width: 480px;
+  max-width: 1200px;
   padding: 24px;
-  margin-top: 24px;
+  margin: 0 auto;
 }
 .page-footer a {
   color: #fff;
 }
 
 /*------------------------------------*\
-    $MODULE
+    MODULE
 \*------------------------------------*/
 /**
  * The modules that make up the basis of the site
  */
 .module {
   background-color: white;
-  padding: 24px;
+  padding: 24px 24px 0 24px;
+  margin-bottom: 24px;
 }
-
-/*------------------------------------*\
-    $DISCLAIMER
-\*------------------------------------*/
-.disclaimer {
-  background-color: #f6dadd;
-  padding: 12px;
-  text-align: center;
+.module.error {
+  background-color: #c85461;
+  color: white;
+  padding-left: 72px;
+}
+.module.error:before {
+  font-size: 48px;
+}
+.module.info {
+  background-color: #7c9ef8;
+  color: white;
+  padding-left: 72px;
+}
+.module.info:before {
+  font-size: 48px;
 }

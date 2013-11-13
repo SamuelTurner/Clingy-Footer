@@ -10,26 +10,13 @@
  * project-specific components afterwards.
  */
 
-
 /**
  * Setup
  */
 @import "vars";
 @import "inuit.css/inuit";
 
-
 /**
  * She’s all yours, cap’n... Begin importing your stuff here.
  */
-/* Base */
-@import "ui/base/mixins";
-@import "ui/base/main";
-@import "ui/base/fonts";
-
-/* Components */
-@import "ui/components/page";
-@import "ui/components/page-header";
-@import "ui/components/page-body";
-@import "ui/components/page-footer";
-@import "ui/components/module";
-@import "ui/components/disclaimer";
+@import "samuelturnerui/samuelturnerui";

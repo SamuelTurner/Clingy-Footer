@@ -1,9 +1,13 @@
+@if $use-page == true{
+
 /*------------------------------------*\
-    $MIXINS
+    PAGE
 \*------------------------------------*/
 /**
- * Helpful mixins
+ * Header for the main page template
  */
-@mixin brand-text-shadow-1 {
-	text-shadow: 1px 1px #000;
+
+.page {
+}
+
 }
