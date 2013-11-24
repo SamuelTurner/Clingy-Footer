@@ -3673,7 +3673,7 @@ input[type="checkbox"] {
  * Positive actions; e.g. sign in, purchase, submit, etc.
  */
 .btn--positive {
-  background-color: #7d0714;
+  background-color: #840816;
   color: #fff;
 }
 
@@ -3698,7 +3698,7 @@ input[type="checkbox"] {
  * Header for the main page template
  */
 .page-header-wrapper {
-  background-color: #7d0714;
+  background-color: #840816;
   border-bottom: 10px solid #b00b1e;
   color: white;
 }
@@ -3812,7 +3812,7 @@ input[type="checkbox"] {
  * Footer for all pages
  */
 .page-footer-wrapper {
-  background-color: #7d0714;
+  background-color: #840816;
   border-top: 10px solid #b00b1e;
   color: white;
   width: 100%;
