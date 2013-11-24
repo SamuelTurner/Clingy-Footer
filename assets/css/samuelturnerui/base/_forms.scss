@@ -79,7 +79,8 @@ input[type="checkbox"] {
  */
 .form-row {
 	.inline-item,
-	.inline-label {
+	.inline-label,
+	input[type="submit"].inline-item {
 		display: inline-block;
 		vertical-align: middle;
 	}

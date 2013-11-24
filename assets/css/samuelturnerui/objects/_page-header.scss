@@ -9,7 +9,7 @@
 
 .page-header-wrapper {
 	background-color: $brand-color-1;
-	border-bottom: 10px solid $brand-color-2;
+	border-bottom: $half-spacing-unit solid $brand-color-2;
 	color: $font-color-2;
 }
 
@@ -32,9 +32,19 @@
 	display: block;
 	float: left;
 	margin-bottom: $base-spacing-unit;
+	margin-right: $base-spacing-unit;
 	font-family: $brand-font-1;
 	font-size: $kilo-size;
 	line-height: 1;
+	
+	a,
+	a:visited,
+	a:hover,
+	a:active {
+		color: #FFFFFF;
+		text-decoration: none;
+	}
+	
 }
 
 @if $use-nav == true {
@@ -75,6 +85,7 @@
 	.page-header__logo {
 		margin-right: $half-spacing-unit;
 		margin-bottom: $half-spacing-unit;
+		font-size: $h1-size;
 	}
 	
 	@if $use-nav == true {
@@ -85,8 +96,12 @@
 		
 		li {
 			background-color: $brand-color-2;
-			padding: $quarter-spacing-unit;
 			margin-bottom: $quarter-spacing-unit;
+			
+			a {
+				padding: $quarter-spacing-unit;
+				margin-right: 0;
+			}
 			
 			&:last-of-type {
 				margin-bottom: 0;

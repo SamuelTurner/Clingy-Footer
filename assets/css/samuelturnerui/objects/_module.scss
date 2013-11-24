@@ -38,4 +38,10 @@
 
 }
 
+.sub-module {
+	@extend .module;
+	background-color: $background-color-1;
+	padding: $half-spacing-unit $half-spacing-unit 0 $half-spacing-unit;
+}
+
 }

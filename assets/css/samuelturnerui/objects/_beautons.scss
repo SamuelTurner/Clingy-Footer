@@ -3,33 +3,19 @@
 /*------------------------------------*\
     $BEAUTONS OVERWRITE
 \*------------------------------------*/
-/**
- * Some styles to overwrite the Beautons
- */
- 
-/*------------------------------------*\
-    $BASE
-\*------------------------------------*/
-/**
- * Base button styles.
- */
-.btn{
-}
 
-/**
- * Positive actions; e.g. sign in, purchase, submit, etc.
- */
-.btn--positive{
-    background-color: $brand-color-1;
+.btn {
     color: #fff;
+    background-color: $brand-color-1;
 }
 
-/**
- * Negative actions; e.g. close account, delete photo, remove friend, etc.
- */
-.btn--negative{
+.btn:hover {
     background-color: $brand-color-2;
-    color :#fff;
+}
+
+input[type="submit"] {
+	@extend .btn;
+	@extend .btn--small;
 }
 
 }
