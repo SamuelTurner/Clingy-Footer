@@ -22,6 +22,8 @@
 				pageContentSelector : '#page-body',
 				footerSelector: "#page-footer-wrapper"
 			});
+		
+			alert ( $("#page-footer-wrapper").width() )
 		});
 	</script>
 	
@@ -49,38 +51,66 @@
 		
 		<div class="page-body" id="page-body">
 			
-			<div class="module">
+			<div class="grid">
 				
-				<div class="info">Clingy-Footer is for <strong>fluid height</strong> footers. If you can fix your footer's height, you should use one of the many CSS only solutions available. (<a href="http://mystrd.at/modern-clean-css-sticky-footer/">I recommend this one</a>).</div>
+				<div class="grid__item one-whole">
+					
+					<div class="module">
+						
+						<div class="info">Clingy-Footer is for <strong>fluid height</strong> footers. If you can fix your footer's height, you should use one of the many CSS only solutions available. (<a href="http://mystrd.at/modern-clean-css-sticky-footer/">I recommend this one</a>).</div>
+						
+						<h2 class="delta">Supported Usage</h2>
+						
+						<p>Clingy-Footer runs on jQuery v2.0.3 (so should work in all browsers jQuery supports) but should work on most older versions as it's pretty simple.</p>
+						
+						<p><a href="https://github.com/SamuelTurner/Clingy-Footer/">View the code on Github</a></p>
+						
+					</div><!-- Closing: module -->
+					
+				</div><!-- Closing: grid--item one-half -->
 				
-				<h2 class="delta">Basic Use</h2>
+			</div><!-- Closing: grid -->
+			
+			<div class="grid">
 				
-				<p>Have a look at the source of this page. All you have to do is call the function (if you use the default selectors):</p>
-
-<pre><code>$(document).ready(function(){
-	$(document).clingyFooter();
-});</code></pre>
-				
-				<h2 class="delta">Overriding Default Selectors</h2>
-				
-				<p>You can also easily pass in the selectors for the body of the page (pageContentSelector), the footer (footerSelector) and the wrapper around the two (pageSelector) to override the default IDs shown in this example:</p>
-				
-<pre><code>$(document).ready(function(){
-	$(document).clingyFooter({
-		pageSelector : '#page',
-		pageContentSelector : '#page-body',
-		footerSelector: "#page-footer"
-	});
-});</code></pre>
-				
-				<h2 class="delta">Supported Usage</h2>
-				
-				<p>Clingy-Footer is supported on jQuery v2.0.3 (and therefore should work in all browsers that jQuery supports) but should work on most older versions as it's pretty simple. I do not currently, nor will I ever, look at this in IE8 or below. Life is too short!</p>
-				
-				<p><a href="http://samuel-turner.co.uk/clingy-footer/">Head here to read the write up</a></p>
-				
-			</div><!-- Closing: module -->
+				<div class="grid__item one-half">
+					
+					<div class="module">
+						
+						<h2 class="delta">Basic Use</h2>
+						
+						<p>All you have to do is call the function (if you use the default selectors).</p>
 		
+<pre><code>$(document).ready(function(){
+  $(document).clingyFooter();
+});</code></pre>
+						
+					</div><!-- Closing: module -->
+					
+				</div><!-- Closing: grid--item one-half
+				
+			 --><div class="grid__item one-half">
+					
+					<div class="module">
+						
+						<h2 class="delta">Overriding Default Selectors</h2>
+						
+						<p>You can easily pass in the selectors for the body of the page (pageContentSelector), the footer (footerSelector) and the wrapper around the two (pageSelector) to override the defaults.</p>
+						
+<pre><code>$(document).ready(function(){
+  $(document).clingyFooter({
+    pageSelector: '#page',
+    pageContentSelector: '#page-body',
+    footerSelector: "#page-footer"
+  });
+});</code></pre>
+						
+					</div><!-- Closing: module -->
+					
+				</div><!-- Closing: grid--item one-half -->
+				
+			</div><!-- Closing: grid -->
+			
 		</div><!-- Closing: page-body -->
 		
 		<div class="page-footer-wrapper" id="page-footer-wrapper">

@@ -848,7 +848,7 @@ textarea:focus {
  * and over in your markup.
  */
 .cf:after, .nav:after, .page-header__nav:after, .form-row-wrapper:after,
-.form-row:after, .page-header:after, .page-header__top-bar:after, .page-footer-wrapper:after, .page-footer:after, .module:after {
+.form-row:after, .page-header:after, .page-header__top-bar:after, .page-footer-wrapper:after, .page-footer:after, .module:after, .sub-module:after {
   content: "";
   display: table;
   clear: both;
@@ -1941,7 +1941,7 @@ label,
  * 8. Basic cosmetics for default buttons. Change or override at will.
  * 9. DonÔÇÖt allow buttons to have underlines; it kinda ruins the illusion.
  */
-.btn {
+.btn, input[type="submit"] {
   display: inline-block;
   /* [1] */
   vertical-align: middle;
@@ -1972,11 +1972,11 @@ label,
   /* [8] */
 }
 
-.btn, .btn:hover {
+.btn, input[type="submit"], .btn:hover, input[type="submit"]:hover {
   text-decoration: none;
   /* [9] */
 }
-.btn:active, .btn:focus {
+.btn:active, input[type="submit"]:active, .btn:focus, input[type="submit"]:focus {
   outline: none;
 }
 
@@ -1989,7 +1989,7 @@ label,
  * These all follow the same sizing rules as above; text is 1em, space around it
  * remains uniform.
  */
-.btn--small {
+.btn--small, input[type="submit"] {
   padding-right: 0.5em;
   padding-left: 0.5em;
   line-height: 2;
@@ -3439,6 +3439,11 @@ u {
 /**
  * Blanket styles that can't be abstracted
  */
+html,
+body {
+  min-width: 480px;
+}
+
 html {
   color: #333;
 }
@@ -3475,7 +3480,8 @@ h6, .zeta {
 .form-row fieldset,
 .form-row label,
 .form-row .label,
-.form-row .btn {
+.form-row .btn,
+.form-row input[type="submit"] {
   display: block;
   margin-bottom: 12px;
 }
@@ -3485,7 +3491,8 @@ h6, .zeta {
 .form-row fieldset textarea,
 .form-row fieldset label,
 .form-row fieldset .label,
-.form-row fieldset .btn {
+.form-row fieldset .btn,
+.form-row fieldset input[type="submit"] {
   margin-bottom: 0;
 }
 
@@ -3544,7 +3551,8 @@ input[type="checkbox"] {
  * Inline Items (make any items with the class in a form-row appear in a line)
  */
 .form-row .inline-item,
-.form-row .inline-label {
+.form-row .inline-label,
+.form-row input[type="submit"].inline-item {
   display: inline-block;
   vertical-align: middle;
 }
@@ -3568,6 +3576,36 @@ input[type="checkbox"] {
     margin-right: 0;
   }
 }
+/*------------------------------------*\
+    LINKS
+\*------------------------------------*/
+a,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: underline;
+  color: #840816;
+}
+
+a:hover {
+  color: #b00b1e;
+}
+
+a.back:before {
+  content: "\0020\00AB\0020";
+}
+
+/*------------------------------------*\
+    CODE
+\*------------------------------------*/
+pre code,
+.block-code {
+  display: block;
+  padding: 12px;
+  background-color: #e9e9e9;
+  margin-bottom: 24px;
+}
+
 /* Objects */
 /*------------------------------------*\
     ERRORS
@@ -3660,29 +3698,13 @@ input[type="checkbox"] {
 /*------------------------------------*\
     $BEAUTONS OVERWRITE
 \*------------------------------------*/
-/**
- * Some styles to overwrite the Beautons
- */
-/*------------------------------------*\
-    $BASE
-\*------------------------------------*/
-/**
- * Base button styles.
- */
-/**
- * Positive actions; e.g. sign in, purchase, submit, etc.
- */
-.btn--positive {
-  background-color: #840816;
+.btn, input[type="submit"] {
   color: #fff;
+  background-color: #840816;
 }
 
-/**
- * Negative actions; e.g. close account, delete photo, remove friend, etc.
- */
-.btn--negative {
+.btn:hover, input[type="submit"]:hover {
   background-color: #b00b1e;
-  color: #fff;
 }
 
 /*------------------------------------*\
@@ -3699,7 +3721,7 @@ input[type="checkbox"] {
  */
 .page-header-wrapper {
   background-color: #840816;
-  border-bottom: 10px solid #b00b1e;
+  border-bottom: 12px solid #b00b1e;
   color: white;
 }
 
@@ -3720,9 +3742,17 @@ input[type="checkbox"] {
   display: block;
   float: left;
   margin-bottom: 24px;
+  margin-right: 24px;
   font-family: pacificoregular, Calibri, Arial, Helvetica, sans-serif;
   font-size: 48px;
   line-height: 1;
+}
+.page-header__logo a,
+.page-header__logo a:visited,
+.page-header__logo a:hover,
+.page-header__logo a:active {
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 .page-header__nav {
@@ -3773,6 +3803,7 @@ input[type="checkbox"] {
   .page-header__logo {
     margin-right: 12px;
     margin-bottom: 12px;
+    font-size: 36px;
   }
 
   .page-header__nav {
@@ -3781,8 +3812,11 @@ input[type="checkbox"] {
   }
   .page-header__nav li {
     background-color: #b00b1e;
-    padding: 6px;
     margin-bottom: 6px;
+  }
+  .page-header__nav li a {
+    padding: 6px;
+    margin-right: 0;
   }
   .page-header__nav li:last-of-type {
     margin-bottom: 0;
@@ -3813,10 +3847,9 @@ input[type="checkbox"] {
  */
 .page-footer-wrapper {
   background-color: #840816;
-  border-top: 10px solid #b00b1e;
+  border-top: 12px solid #b00b1e;
   color: white;
   width: 100%;
-  /* Clingy footer requires a width */
 }
 
 .page-footer {
@@ -3835,24 +3868,29 @@ input[type="checkbox"] {
 /**
  * The modules that make up the basis of the site
  */
-.module {
+.module, .sub-module {
   background-color: white;
   padding: 24px 24px 0 24px;
   margin-bottom: 24px;
 }
-.module.error {
+.module.error, .error.sub-module {
   background-color: #c85461;
   color: white;
   padding-left: 72px;
 }
-.module.error:before {
+.module.error:before, .error.sub-module:before {
   font-size: 48px;
 }
-.module.info {
+.module.info, .info.sub-module {
   background-color: #7c9ef8;
   color: white;
   padding-left: 72px;
 }
-.module.info:before {
+.module.info:before, .info.sub-module:before {
   font-size: 48px;
+}
+
+.sub-module {
+  background-color: #e9e9e9;
+  padding: 12px 12px 0 12px;
 }
